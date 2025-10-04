@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Search, Wrench, Home, Zap, Car, Hammer, Star, Shield, Clock } from 'lucide-react';
+import { Search, Wrench, Chrome as Home, Zap, Car, Hammer, Star, Shield, Clock } from 'lucide-react';
 import { useState } from 'react';
 
 const categories = [

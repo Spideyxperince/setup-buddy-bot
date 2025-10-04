@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Menu, User, LogOut, Home, Briefcase } from 'lucide-react';
+import { Moon, Sun, Menu, User, LogOut, Chrome as Home, Briefcase } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import {

@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { VendorProfile, BookingRequest, Service } from '@/types/database';
 import { format } from 'date-fns';
-import { Calendar, Clock, User, Phone, CheckCircle, XCircle, Edit } from 'lucide-react';
+import { Calendar, Clock, User, Phone, CircleCheck as CheckCircle, Circle as XCircle, CreditCard as Edit } from 'lucide-react';
 import { toast } from 'sonner';
 import { ManageServicesDialog } from './ManageServicesDialog';
 import { EditVendorProfileDialog } from './EditVendorProfileDialog';
