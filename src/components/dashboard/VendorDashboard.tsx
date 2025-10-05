@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { VendorProfile, BookingRequest, Service } from '@/types/database';
 import { format } from 'date-fns';
-import { Calendar, Clock, User, Phone, CircleCheck as CheckCircle, Circle as XCircle, CreditCard as Edit } from 'lucide-react';
+import { Calendar, Clock, User, Phone, CheckCircle, XCircle, Edit } from 'lucide-react';
 import { toast } from 'sonner';
 import { ManageServicesDialog } from './ManageServicesDialog';
 import { EditVendorProfileDialog } from './EditVendorProfileDialog';
@@ -37,19 +37,28 @@ export function VendorDashboard() {
   const loadVendorData = async () => {
     if (!user) return;
 
-    const [vendorRes, bookingsRes, servicesRes] = await Promise.all([
-      supabase.from('vendor_profiles').select('*').eq('user_id', user.id).maybeSingle(),
-      supabase
-        .from('booking_requests')
-        .select('*, user_profiles(full_name, phone_number)')
-        .eq('vendor_id', vendorRes.data?.id || '')
-        .order('created_at', { ascending: false }),
-      supabase.from('services').select('*').eq('vendor_id', vendorRes.data?.id || ''),
-    ]);
+    const vendorRes = await supabase
+      .from('vendor_profiles')
+      .select('*')
+      .eq('user_id', user.id)
+      .maybeSingle();
 
-    if (vendorRes.data) setVendorProfile(vendorRes.data);
-    if (bookingsRes.data) setBookings(bookingsRes.data as BookingWithUser[]);
-    if (servicesRes.data) setServices(servicesRes.data);
+    if (vendorRes.data) {
+      setVendorProfile(vendorRes.data);
+
+      const [bookingsRes, servicesRes] = await Promise.all([
+        supabase
+          .from('booking_requests')
+          .select('*, user_profiles(full_name, phone_number)')
+          .eq('vendor_id', vendorRes.data.id)
+          .order('created_at', { ascending: false }),
+        supabase.from('services').select('*').eq('vendor_id', vendorRes.data.id),
+      ]);
+
+      if (bookingsRes.data) setBookings(bookingsRes.data as any);
+      if (servicesRes.data) setServices(servicesRes.data);
+    }
+    
     setLoading(false);
   };
 

@@ -33,7 +33,7 @@ export default function Vendors() {
     const search = searchParams.get('search');
 
     if (category && category !== 'all') {
-      query = query.eq('category', category);
+      query = query.eq('category', category as VendorCategory);
     }
 
     if (search) {

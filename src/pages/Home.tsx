@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Search, Wrench, Chrome as Home, Zap, Car, Hammer, Star, Shield, Clock } from 'lucide-react';
+import { Search, Wrench, House, Zap, Car, Hammer, Star, Shield, Clock } from 'lucide-react';
 import { useState } from 'react';
 
 const categories = [
-  { name: 'Home Services', value: 'home_services', icon: Home, color: 'bg-blue-500' },
+  { name: 'Home Services', value: 'home_services', icon: House, color: 'bg-blue-500' },
   { name: 'Construction', value: 'construction', icon: Hammer, color: 'bg-orange-500' },
   { name: 'Electrical', value: 'home_services', icon: Zap, color: 'bg-yellow-500' },
   { name: 'Automotive', value: 'automotive', icon: Car, color: 'bg-red-500' },
